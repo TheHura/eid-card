@@ -3,54 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Mubarak Greeting</title>
+    <title>Eid Mubarak Special Wish</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #1a472a, #2d5a27);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid #ffd700;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            max-width: 90%;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .moon {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-        .footer {
-            margin-top: 20px;
-            font-weight: bold;
-            color: #ffd700;
-        }
+        body { margin: 0; padding: 0; background: #004b23; font-family: 'Arial', sans-serif; text-align: center; color: #fff; }
+        .container { padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .from-name { background: gold; color: #000; padding: 10px 20px; border-radius: 50px; font-weight: bold; font-size: 26px; margin-bottom: 20px; box-shadow: 0 0 15px gold; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        h1 { font-size: 45px; color: #ff0; text-shadow: 2px 2px #000; }
+        .moon { font-size: 80px; margin: 10px 0; }
+        .input-area { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; margin-top: 30px; }
+        input { width: 80%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; margin-bottom: 10px; }
+        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="moon">🌙✨</div>
-        <h1>Eid Mubarak!</h1>
-        <p>May this special day bring peace, happiness, and prosperity to everyone.</p>
-        <div class="footer">The Hura Enterprises ki taraf se Mubarakbaad</div>
+    <div class="container">
+        <div class="from-name" id="displayName">Aapka Dost</div>
+        
+        <p style="font-size: 18px;">Ki Taraf Se Aapko Kuch Bheja Hai...</p>
+        <div class="moon">🌙</div>
+        <h1>EID MUBARAK</h1>
+        
+        <p style="font-size: 20px;">Dua hai ki aapki har khwahish poori ho!<br> ✨🌙✨</p>
+
+        <div class="input-area">
+            <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
+            <br>
+            <button class="share-btn" onclick="shareOnWhatsApp()">WhatsApp par Bhejein 🟢</button>
+        </div>
     </div>
+
+    <script>
+        function shareOnWhatsApp() {
+            var name = document.getElementById("nameInput").value;
+            if(name == "") {
+                alert("Pehle apna naam likhein!");
+                return;
+            }
+            
+            document.getElementById("displayName").innerHTML = name;
+            
+            // Catchy Line for WhatsApp
+            var msg = encodeURIComponent("🛑 *देखिये " + name + " ने आपके लिए कुछ स्पेशल भेजा है!* 🛑\n\nनीचे दी गई नीली लाइन को टच करके देखें... 👇👇\n\n" + window.location.href);
+            
+            window.open("https://api.whatsapp.com/send?text=" + msg);
+        }
+    </script>
 </body>
 </html>
