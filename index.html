@@ -13,16 +13,12 @@
         .moon { font-size: 60px; margin: 10px 0; }
         .family-wish { font-size: 20px; font-weight: bold; color: #fff; }
         
-        /* Direct Link Button Style */
-        .ad-btn { background: #ff4757; color: white; border: none; padding: 12px 20px; font-size: 18px; font-weight: bold; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: shake 0.5s infinite; }
-        @keyframes shake { 0% { transform: rotate(0deg); } 25% { transform: rotate(2deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-2deg); } 100% { transform: rotate(0deg); } }
-
-        /* Banner Ad Container */
-        .banner-ad { margin: 15px 0; width: 100%; min-height: 50px; background: rgba(255,255,255,0.05); }
+        /* Banner Ad Style */
+        .banner-ad { margin: 10px 0; min-height: 50px; width: 100%; }
 
         .input-area { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; margin-top: 20px; }
         input { width: 80%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; margin-bottom: 15px; color: #000; }
-        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; }
     </style>
 </head>
 <body>
@@ -30,19 +26,15 @@
         <div class="banner-ad">
             </div>
 
-        <div class="from-name" id="displayName">Ali</div>
+        <div class="from-name" id="displayName">AliAsad</div>
         <div class="family-wish">ki taraf se aapke pure parivaar ko</div>
         <div class="moon">🌙</div>
         <h1>EID MUBARAK</h1>
-
-        <a href="https://www.effectivegatecpm.com/em2yha4k6?key=a98ee7e120ee6fda276897a4f63cbf75" target="_blank" class="ad-btn">
-            🎁 Eid Surprise Dekhein 🎁
-        </a>
         
         <div class="input-area">
             <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
             <br>
-            <button class="share-btn" onclick="shareOnWhatsApp()">WhatsApp par Bhejein 🟢</button>
+            <button class="share-btn" onclick="earnAndShare()">WhatsApp par Bhejein 🟢</button>
         </div>
 
         <div class="banner-ad">
@@ -58,13 +50,23 @@
             }
         };
 
-        function shareOnWhatsApp() {
+        function earnAndShare() {
             var name = document.getElementById("nameInput").value;
             if(name == "") { alert("Pehle apna naam likhein!"); return; }
+            
+            // 1. Pehle Adsterra Direct Link khulega naye tab mein
+            window.open("https://www.effectivegatecpm.com/em2yha4k6?key=a98ee7e120ee6fda276897a4f63cbf75", "_blank");
+
+            // 2. Phir WhatsApp share link taiyar hoga
             var shareLink = window.location.origin + window.location.pathname + "?n=" + encodeURIComponent(name);
-            var msg = encodeURIComponent("🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\nइसे देखने के लिए नीचे दी गई लाइन पर क्लिक करें 👇\n\n" + shareLink);
-            window.open("https://api.whatsapp.com/send?text=" + msg);
+            var msg = encodeURIComponent("🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\nइसे देखने के लिए नीचे क्लिक करें 👇\n\n👉 " + shareLink);
+            
+            // 3. WhatsApp khul jayega
+            setTimeout(function(){
+                window.location.href = "https://api.whatsapp.com/send?text=" + msg;
+            }, 500);
         }
     </script>
 </body>
 </html>
+
