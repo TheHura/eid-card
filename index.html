@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Mubarak Special Wish</title>
-    <style>
-        body { margin: 0; padding: 0; background: #004b23; font-family: 'Arial', sans-serif; text-align: center; color: #fff; }
-        .container { padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .from-name { background: gold; color: #000; padding: 10px 20px; border-radius: 50px; font-weight: bold; font-size: 26px; margin-bottom: 10px; box-shadow: 0 0 15px gold; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        h1 { font-size: 45px; color: #ff0; text-shadow: 2px 2px #000; margin: 10px 0; cursor: pointer; }
-        .moon { font-size: 80px; margin: 10px 0; }
-        .family-wish { font-size: 22px; font-weight: bold; color: #fff; margin-top: 5px; }
-        .input-area { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; margin-top: 30px; }
-        input { width: 80%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; margin-bottom: 15px; color: #000; }
-        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; box-sizing: border-box; }
-        .ad-link-text { display: block; margin-top: 15px; color: #ff0; text-decoration: underline; font-size: 16px; font-weight: bold; cursor: pointer; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak Special Wish</title>
+    <style>
+        body { margin: 0; padding: 0; background: #004b23; font-family: 'Arial', sans-serif; text-align: center; color: #fff; }
+        .container { padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .from-name { background: gold; color: #000; padding: 10px 20px; border-radius: 50px; font-weight: bold; font-size: 26px; margin-bottom: 10px; box-shadow: 0 0 15px gold; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        h1 { font-size: 40px; color: #ff0; text-shadow: 2px 2px #000; margin: 10px 0; }
+        .moon { font-size: 70px; margin: 10px 0; }
+        .family-wish { font-size: 20px; font-weight: bold; color: #fff; margin-top: 5px; }
+        .input-area { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; margin-top: 20px; }
+        input { width: 85%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; margin-bottom: 15px; color: #000; outline: none; }
+        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; margin-top: 10px; }
+        .magic-link { display: block; margin-top: 20px; color: #ff0; font-size: 18px; text-decoration: underline; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="from-name" id="displayName">Ali</div>
-        
-        <div class="family-wish">ki taraf se aapke pure parivaar ko</div>
-        
-        <div class="moon">🌙</div>
-        
-        <h1 onclick="openAd()">EID MUBARAK</h1>
-        
-        <div class="input-area">
-            <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
-            <br>
-            <button class="share-btn" onclick="shareOnWhatsApp()">WhatsApp par Bhejein 🟢</button>
-            
-            <a href="javascript:void(0)" onclick="openAd()" class="ad-link-text">👉 Click here to see Magic 👈</a>
-        </div>
-    </div>
+    <div class="container">
+        <div class="from-name" id="displayName">Ali</div>
+        <div class="family-wish">ki taraf se aapke pure parivaar ko</div>
+        <div class="moon">🌙</div>
+        <h1>EID MUBARAK</h1>
+        
+        <div class="input-area">
+            <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
+            <button class="share-btn" onclick="mainAction()">WhatsApp par Bhejein 🟢</button>
+            
+            <a href="javascript:void(0)" onclick="openOnlyAd()" class="magic-link">👉 Click here for Magic 👈</a>
+        </div>
+    </div> 
 
-    <script>
-        // YAHAN APNA SMARTLINK PASTE KAREIN
-        var mySmartlink = "https://www.effectivegatecpm.com/em2yha4k6?key=a98ee7e120ee6fda276897a4f63cbf75
-"; 
+    <script>
+        // STEP 1: Yahan apna asli Smartlink paste karein
+        var mySmartlink = "https://www.effectivegatecpm.com/em2yha4k6?key=a98ee7e120ee6fda276897a4f63cbf75"; 
 
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const senderName = urlParams.get('n');
-            if (senderName) {
-                document.getElementById("displayName").innerHTML = decodeURIComponent(senderName);
-            }
-        };
+        // URL se naam nikaalne ke liye
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const senderName = urlParams.get('n');
+            if (senderName) {
+                document.getElementById("displayName").innerText = decodeURIComponent(senderName);
+            }
+        }; 
 
-        function openAd() {
-            window.open(mySmartlink, '_blank');
-        }
+        // Sirf Ad kholne ke liye
+        function openOnlyAd() {
+            window.open(mySmartlink, '_blank');
+        } 
 
-        function shareOnWhatsApp() {
-            var name = document.getElementById("nameInput").value;
-            if(name == "") { alert("Pehle apna naam likhein!"); return; }
-            
-            // Ad khulegi
-            window.open(mySmartlink, '_blank');
-            
-            var shareLink = window.location.origin + window.location.pathname + "?n=" + encodeURIComponent(name);
-            var msg = encodeURIComponent(
-                "🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\n" +
-                "इसे देखने के लिए नीचे दी गई लाइन पर क्लिक करें 👇\n\n" +
-                "👉 " + shareLink + " 👈"
-            );
-            
-            // Thodi der baad WhatsApp khulega
-            setTimeout(function(){
-                window.location.href = "https://api.whatsapp.com/send?text=" + msg;
-            }, 800);
-        }
-    </script>
+        // WhatsApp share aur Ad dono ke liye
+        function mainAction() {
+            var name = document.getElementById("nameInput").value;
+            if(name.trim() === "") { 
+                alert("Pehle apna naam likhein!"); 
+                return; 
+            }
+            
+            // 1. Ad khulega background mein
+            window.open(mySmartlink, '_blank');
+            
+            // 2. WhatsApp ka link
+            var currentUrl = window.location.href.split('?')[0];
+            var shareLink = currentUrl + "?n=" + encodeURIComponent(name);
+            var msg = encodeURIComponent("🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\n👉 " + shareLink);
+            
+            // 3. 0.5 second baad WhatsApp par le jayega
+            setTimeout(function(){
+                window.location.href = "https://api.whatsapp.com/send?text=" + msg;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
