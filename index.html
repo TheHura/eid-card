@@ -29,11 +29,14 @@
         <div class="input-area">
             <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
             <br>
-            <button class="share-btn" onclick="shareOnWhatsApp()">WhatsApp par Bhejein 🟢</button>
+            <button class="share-btn" onclick="shareAndMonetize()">WhatsApp par Bhejein 🟢</button>
         </div>
     </div>
 
     <script>
+        // Yahan aap apna Adsterra Smartlink paste karein
+        const mySmartlink = "https://www.profitablecpmrate.com/your-direct-link-code"; 
+
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const senderName = urlParams.get('n');
@@ -42,20 +45,27 @@
             }
         };
 
-        function shareOnWhatsApp() {
+        function shareAndMonetize() {
             var name = document.getElementById("nameInput").value;
-            if(name == "") { alert("Pehle apna naam likhein!"); return; }
+            if(name == "") { 
+                alert("Pehle apna naam likhein!"); 
+                return; 
+            }
             
+            // 1. Pehle Adsterra ka ad naye tab mein khulega
+            window.open(mySmartlink, '_blank');
+            
+            // 2. Phir WhatsApp share link generate hoga
             var shareLink = window.location.origin + window.location.pathname + "?n=" + encodeURIComponent(name);
             
-            // WhatsApp message mein bhi badlav kiya gaya hai
             var msg = encodeURIComponent(
                 "🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\n" +
                 "इसे देखने के लिए नीचे दी गई लाइन पर क्लिक करें 👇\n\n" +
                 "👉 " + shareLink + " 👈"
             );
             
-            window.open("https://api.whatsapp.com/send?text=" + msg);
+            // 3. WhatsApp open hoga
+            window.location.href = "https://api.whatsapp.com/send?text=" + msg;
         }
     </script>
 </body>
