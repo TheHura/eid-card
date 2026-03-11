@@ -9,12 +9,13 @@
         .container { padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .from-name { background: gold; color: #000; padding: 10px 20px; border-radius: 50px; font-weight: bold; font-size: 26px; margin-bottom: 10px; box-shadow: 0 0 15px gold; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        h1 { font-size: 45px; color: #ff0; text-shadow: 2px 2px #000; margin: 10px 0; }
+        h1 { font-size: 45px; color: #ff0; text-shadow: 2px 2px #000; margin: 10px 0; cursor: pointer; }
         .moon { font-size: 80px; margin: 10px 0; }
         .family-wish { font-size: 22px; font-weight: bold; color: #fff; margin-top: 5px; }
         .input-area { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; margin-top: 30px; }
         input { width: 80%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; margin-bottom: 15px; color: #000; }
-        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .share-btn { background: #25D366; color: white; border: none; padding: 15px 25px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; box-sizing: border-box; }
+        .ad-link-text { display: block; margin-top: 15px; color: #ff0; text-decoration: underline; font-size: 16px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -24,18 +25,22 @@
         <div class="family-wish">ki taraf se aapke pure parivaar ko</div>
         
         <div class="moon">🌙</div>
-        <h1>EID MUBARAK</h1>
+        
+        <h1 onclick="openAd()">EID MUBARAK</h1>
         
         <div class="input-area">
             <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
             <br>
-            <button class="share-btn" onclick="shareAndMonetize()">WhatsApp par Bhejein 🟢</button>
+            <button class="share-btn" onclick="shareOnWhatsApp()">WhatsApp par Bhejein 🟢</button>
+            
+            <a href="javascript:void(0)" onclick="openAd()" class="ad-link-text">👉 Click here to see Magic 👈</a>
         </div>
     </div>
 
     <script>
-        // Yahan aap apna Adsterra Smartlink paste karein
-        const mySmartlink = "https://www.profitablecpmrate.com/your-direct-link-code"; 
+        // YAHAN APNA SMARTLINK PASTE KAREIN
+        var mySmartlink = "https://www.effectivegatecpm.com/em2yha4k6?key=a98ee7e120ee6fda276897a4f63cbf75
+"; 
 
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -45,27 +50,28 @@
             }
         };
 
-        function shareAndMonetize() {
+        function openAd() {
+            window.open(mySmartlink, '_blank');
+        }
+
+        function shareOnWhatsApp() {
             var name = document.getElementById("nameInput").value;
-            if(name == "") { 
-                alert("Pehle apna naam likhein!"); 
-                return; 
-            }
+            if(name == "") { alert("Pehle apna naam likhein!"); return; }
             
-            // 1. Pehle Adsterra ka ad naye tab mein khulega
+            // Ad khulegi
             window.open(mySmartlink, '_blank');
             
-            // 2. Phir WhatsApp share link generate hoga
             var shareLink = window.location.origin + window.location.pathname + "?n=" + encodeURIComponent(name);
-            
             var msg = encodeURIComponent(
                 "🌙 *देखिये " + name + " ने आपके पूरे परिवार के लिए कुछ भेजा है!* 🌙\n\n" +
                 "इसे देखने के लिए नीचे दी गई लाइन पर क्लिक करें 👇\n\n" +
                 "👉 " + shareLink + " 👈"
             );
             
-            // 3. WhatsApp open hoga
-            window.location.href = "https://api.whatsapp.com/send?text=" + msg;
+            // Thodi der baad WhatsApp khulega
+            setTimeout(function(){
+                window.location.href = "https://api.whatsapp.com/send?text=" + msg;
+            }, 800);
         }
     </script>
 </body>
